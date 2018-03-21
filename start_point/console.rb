@@ -1,6 +1,11 @@
 require_relative('models/artist')
 require_relative('models/album')
 
+Album.drop()
+Artist.drop()
+Artist.create()
+Album.create()
+
 artist01 = Artist.new( { 'name' => 'ACDC' })
 artist02 = Artist.new( { 'name' => 'Blind Guardian'})
 artist01.save()

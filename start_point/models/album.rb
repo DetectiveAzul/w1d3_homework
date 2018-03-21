@@ -9,6 +9,27 @@ class Album
     @artist_id = options['artist_id']
   end
 
+  def self.drop()
+    sql = "DROP TABLE IF EXISTS albums;"
+    SqlRunner.run(sql)
+  end
+
+  def self.create()
+    sql = "
+    CREATE TABLE albums (
+      id SERIAL8 PRIMARY KEY,
+      title VARCHAR(255),
+      genre VARCHAR(255),
+      artist_id INT8 REFERENCES artists(id)
+    );"
+    SqlRunner.run(sql)
+  end
+
+  def self.delete_all()
+    sql = "DELETE FROM albums;"
+    SqlRunner.run(sql)
+  end
+
   def save()
     sql = "
     INSERT INTO albums
