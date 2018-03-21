@@ -45,8 +45,8 @@ class Album
     ;"
     values = [id]
     object_array = SqlRunner.run(sql, values)
-    object = Album.new(object_array.first)
-    return object unless object == nil
+    object = Album.new(object_array.first) unless object_array.first == nil
+    return object
   end
 
   def save()

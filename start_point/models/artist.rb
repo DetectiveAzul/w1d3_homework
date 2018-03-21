@@ -41,8 +41,8 @@ class Artist
     ;"
     values = [id]
     object_array = SqlRunner.run(sql, values)
-    object = Artist.new(object_array.first)
-    return object unless object == nil
+    object = Artist.new(object_array.first) unless object_array.first == nil
+    return object
   end
 
   def save()

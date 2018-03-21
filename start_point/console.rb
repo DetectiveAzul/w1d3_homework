@@ -47,9 +47,11 @@ album01.update()
 artist03.name = 'Tributo a Mojinos'
 artist03.update()
 
-# album01.delete()
-# artist03.delete()
+album01.delete()
+artist03.delete()
 
+album_not_found = Album.find_by_id(56)
+artist_found = Artist.find_by_id(1)
 
 binding.pry()
 nil
