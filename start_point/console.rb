@@ -1,5 +1,6 @@
 require_relative('models/artist')
 require_relative('models/album')
+require('pry')
 
 Album.drop()
 Artist.drop()
@@ -22,3 +23,6 @@ album02 = Album.new( {
 })
 album01.save()
 album02.save()
+
+binding.pry
+nil

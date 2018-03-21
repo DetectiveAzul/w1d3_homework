@@ -1,3 +1,4 @@
+require_relative('../db/sql_runner')
 class Artist
   attr_reader :id, :name
   def initialize(options)
@@ -17,6 +18,12 @@ class Artist
       name VARCHAR(255)
     );"
     SqlRunner.run(sql)
+  end
+
+  def self.all()
+    sql = "SELECT * FROM artists"
+    list = SqlRunner.run(sql)
+    return list.map { |hash| Artist.new(hash) }
   end
 
   def self.delete_all()
