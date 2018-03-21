@@ -5,7 +5,7 @@ class Artist
   attr_reader :id
   attr_accessor :name
   def initialize(options)
-    @id = options['id'] unless options['id'] == nil
+    @id = options['id'].to_i unless options['id'] == nil
     @name = options['name']
   end
 
@@ -32,6 +32,17 @@ class Artist
   def self.delete_all()
     sql = "DELETE FROM artists"
     SqlRunner.run(sql)
+  end
+
+  def self.find_by_id(id)
+    sql = "
+    SELECT * FROM artists
+    WHERE id = $1
+    ;"
+    values = [id]
+    object_array = SqlRunner.run(sql, values)
+    object = Artist.new(object_array.first)
+    return object unless object == nil
   end
 
   def save()

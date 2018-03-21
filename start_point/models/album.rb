@@ -5,10 +5,10 @@ class Album
   attr_reader :id
   attr_accessor :title, :genre, :artist_id
   def initialize(options)
-    @id = options['id'] unless options['id'] == nil
+    @id = options['id'].to_i unless options['id'] == nil
     @title = options['title']
     @genre = options['genre']
-    @artist_id = options['artist_id']
+    @artist_id = options['artist_id'].to_i
   end
 
   def self.drop()
@@ -36,6 +36,17 @@ class Album
   def self.delete_all()
     sql = "DELETE FROM albums;"
     SqlRunner.run(sql)
+  end
+
+  def self.find_by_id(id)
+    sql = "
+    SELECT * FROM albums
+    WHERE id = $1
+    ;"
+    values = [id]
+    object_array = SqlRunner.run(sql, values)
+    object = Album.new(object_array.first)
+    return object unless object == nil
   end
 
   def save()

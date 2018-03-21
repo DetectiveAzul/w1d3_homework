@@ -47,8 +47,9 @@ album01.update()
 artist03.name = 'Tributo a Mojinos'
 artist03.update()
 
-album01.delete()
-artist03.delete()
+# album01.delete()
+# artist03.delete()
+
 
 binding.pry()
 nil
