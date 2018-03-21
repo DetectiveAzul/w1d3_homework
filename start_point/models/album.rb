@@ -1,4 +1,5 @@
 require_relative('../db/sql_runner')
+require_relative('./artist')
 
 class Album
   attr_reader :id, :title, :genre, :artist_id
@@ -46,5 +47,15 @@ class Album
     values = [@title, @genre, @artist_id]
     result = SqlRunner.run(sql, values)
     @id = result[0]['id']
+  end
+
+  def artist()
+    sql = "
+    SELECT * FROM artists
+    WHERE
+    id = $1"
+    values = [@artist_id]
+    artist_array = SqlRunner.run(sql, values)
+    return Artist.new(artist_array.first)
   end
 end
