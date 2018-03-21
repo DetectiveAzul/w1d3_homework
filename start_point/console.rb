@@ -21,8 +21,20 @@ album02 = Album.new( {
   'genre' => 'Folk Metal',
   'artist_id' => artist02.id
 })
+album03 = Album.new( {
+  'title' => 'High Voltage',
+  'genre' => 'Heavy Metal',
+  'artist_id' => artist01.id
+})
+album04 = Album.new( {
+  'title' => 'At The Edge Of Time',
+  'genre' => 'Folk Metal',
+  'artist_id' => artist02.id
+})
 album01.save()
 album02.save()
+album03.save()
+album04.save()
 
 binding.pry
 nil
